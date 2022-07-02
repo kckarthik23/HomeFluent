@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "userID")
+    @Column(name = "UserID")
     private int userId;
     @Column(name = "Age")
     private int age;
