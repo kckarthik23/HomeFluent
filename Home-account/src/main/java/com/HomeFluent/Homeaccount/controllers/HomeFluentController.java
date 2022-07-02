@@ -34,7 +34,7 @@ public class HomeFluentController {
 
     @PostMapping(value = "/users/createUser", consumes = "application/json", produces = "application/json")
     public ResponseEntity<UserEntity> createUser(@RequestBody User user) {
-        
+
         BeanUtils.copyProperties(user, userDto);
         userDto.setPassword(passwordEncoder.encode(user.getPassword()));
         UserEntity response = userservice.createUser(userDto);
@@ -50,7 +50,7 @@ public class HomeFluentController {
     @GetMapping("/users/getAllUsers")
     public List<UserRest> getAllUsers() {
         return userservice.getAlUsers();
-        //throw new RuntimeException("fuckeddddddd");
+        // throw new RuntimeException("fuckeddddddd");
     }
 
     @GetMapping("/users/getUser/{name}")

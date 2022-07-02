@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-
 import com.HomeFluent.Homeaccount.Security.UserDetails.DetailService;
 import com.HomeFluent.Homeaccount.dto.UserDto;
 import com.HomeFluent.Homeaccount.entities.UserEntity;
@@ -20,7 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl implements UserService,DetailService {
+public class UserServiceImpl implements UserService, DetailService {
 
     @Autowired
     UserRepo userRepo;
@@ -52,7 +50,7 @@ public class UserServiceImpl implements UserService,DetailService {
     public UserEntity createUser(UserDto user) {
         // TODO Auto-generated method stub
         user.setLocalDateAndTime(LocalDateTime.now());
-        UserEntity userEntity=new UserEntity();
+        UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
         UserEntity returnVal = userRepo.save(userEntity);
         return returnVal;
@@ -74,9 +72,10 @@ public class UserServiceImpl implements UserService,DetailService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // TODO Auto-generated method stub
-       UserEntity entity= userRepo.findByName(username);
-        if(entity==null) throw new UsernameNotFoundException(username);
-        return new User(entity.getName(),entity.getPassword(),new ArrayList<>());
+        UserEntity entity = userRepo.findByName(username);
+        if (entity == null)
+            throw new UsernameNotFoundException(username);
+        return new User(entity.getName(), entity.getPassword(), new ArrayList<>());
     }
 
 }

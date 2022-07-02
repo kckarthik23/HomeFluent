@@ -14,47 +14,61 @@ public class UserRest {
     private String occupation;
     private String qualification;
     private LocalDateTime dateTime;
+
     public int getAge() {
         return age;
     }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
+
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
+
     public void setAge(int age) {
         this.age = age;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public BigInteger getToatalIncome() {
         return toatalIncome;
     }
+
     public void setToatalIncome(BigInteger toatalIncome) {
         this.toatalIncome = toatalIncome;
     }
+
     public String getOccupation() {
         return occupation;
     }
+
     public void setOccupation(String occupation) {
         this.occupation = occupation;
     }
+
     public String getQualification() {
         return qualification;
     }
+
     public void setQualification(String qualification) {
         this.qualification = qualification;
     }
+
     @Override
     public String toString() {
         return "User [age=" + age + ", name=" + name + ", occupation=" + occupation + ", qualification=" + qualification
                 + ", toatalIncome=" + toatalIncome + "]";
     }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -66,6 +80,7 @@ public class UserRest {
         result = prime * result + ((toatalIncome == null) ? 0 : toatalIncome.hashCode());
         return result;
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -100,5 +115,4 @@ public class UserRest {
         return true;
     }
 
-    
 }

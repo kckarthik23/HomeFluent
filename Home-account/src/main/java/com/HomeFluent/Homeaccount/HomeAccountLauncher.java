@@ -14,8 +14,7 @@ public class HomeAccountLauncher {
 	}
 
 	@Bean
-	public PasswordEncoder encoder()
-	{
+	public PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
 

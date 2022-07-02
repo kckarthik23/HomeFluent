@@ -5,13 +5,9 @@ public class CaneraRobeccoEquityFunds implements MutualFunds {
     private long totalReturnAmount;
     private int interestRate;
 
-
-
     public void setTotalInvestedAmount(long totalInvestedAmount) {
         this.totalInvestedAmount = totalInvestedAmount;
     }
-
- 
 
     public void setTotalReturnAmount(long totalReturnAmount) {
         this.totalReturnAmount = totalReturnAmount;
@@ -73,6 +69,4 @@ public class CaneraRobeccoEquityFunds implements MutualFunds {
                 + ", totalReturnAmount=" + totalReturnAmount + "]";
     }
 
-    
-    
 }
