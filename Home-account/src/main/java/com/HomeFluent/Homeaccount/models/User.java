@@ -12,6 +12,13 @@ public class User {
     private BigInteger toatalIncome;
     private String occupation;
     private String qualification;
+    public String password;
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public int getAge() {
         return age;
     }

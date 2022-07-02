@@ -16,6 +16,13 @@ public class UserDto implements Serializable {
     private String occupation;
     private String qualification;
     private LocalDateTime localDateAndTime;
+    private String password;
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
     public int getAge() {
         return age;
     }

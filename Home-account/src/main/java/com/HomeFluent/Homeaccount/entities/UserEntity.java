@@ -30,5 +30,7 @@ public class UserEntity {
     @Column(name = "Qualification")
     private String qualification;
     @Column(name = "Registration_Date")
-    private LocalDateTime localDateAndTime;  
+    private LocalDateTime localDateAndTime;
+    @Column(name = "Password")
+    private String password;
 }
