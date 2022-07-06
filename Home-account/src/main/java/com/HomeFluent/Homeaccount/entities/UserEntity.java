@@ -24,7 +24,7 @@ public class UserEntity {
     @Column(name = "Name")
     private String name;
     @Column(name = "TotalIncome")
-    private BigInteger toatalIncome;
+    private BigInteger totalIncome;
     @Column(name = "Occupation")
     private String occupation;
     @Column(name = "Qualification")

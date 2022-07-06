@@ -9,7 +9,7 @@ public class User {
 
     private int age;
     private String name;
-    private BigInteger toatalIncome;
+    private BigInteger totalIncome;
     private String occupation;
     private String qualification;
     public String password;
@@ -38,14 +38,6 @@ public class User {
         this.name = name;
     }
 
-    public BigInteger getToatalIncome() {
-        return toatalIncome;
-    }
-
-    public void setToatalIncome(BigInteger toatalIncome) {
-        this.toatalIncome = toatalIncome;
-    }
-
     public String getOccupation() {
         return occupation;
     }
@@ -62,10 +54,18 @@ public class User {
         this.qualification = qualification;
     }
 
+    public BigInteger getTotalIncome() {
+        return totalIncome;
+    }
+
+    public void setTotalIncome(BigInteger totalIncome) {
+        this.totalIncome = totalIncome;
+    }
+
     @Override
     public String toString() {
-        return "User [age=" + age + ", name=" + name + ", occupation=" + occupation + ", qualification=" + qualification
-                + ", toatalIncome=" + toatalIncome + "]";
+        return "User [age=" + age + ", name=" + name + ", occupation=" + occupation + ", password=" + password
+                + ", qualification=" + qualification + ", totalIncome=" + totalIncome + "]";
     }
 
     @Override
@@ -75,8 +75,9 @@ public class User {
         result = prime * result + age;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((occupation == null) ? 0 : occupation.hashCode());
+        result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((qualification == null) ? 0 : qualification.hashCode());
-        result = prime * result + ((toatalIncome == null) ? 0 : toatalIncome.hashCode());
+        result = prime * result + ((totalIncome == null) ? 0 : totalIncome.hashCode());
         return result;
     }
 
@@ -101,15 +102,20 @@ public class User {
                 return false;
         } else if (!occupation.equals(other.occupation))
             return false;
+        if (password == null) {
+            if (other.password != null)
+                return false;
+        } else if (!password.equals(other.password))
+            return false;
         if (qualification == null) {
             if (other.qualification != null)
                 return false;
         } else if (!qualification.equals(other.qualification))
             return false;
-        if (toatalIncome == null) {
-            if (other.toatalIncome != null)
+        if (totalIncome == null) {
+            if (other.totalIncome != null)
                 return false;
-        } else if (!toatalIncome.equals(other.toatalIncome))
+        } else if (!totalIncome.equals(other.totalIncome))
             return false;
         return true;
     }

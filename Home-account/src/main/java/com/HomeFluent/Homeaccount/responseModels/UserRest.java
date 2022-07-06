@@ -10,7 +10,7 @@ public class UserRest {
 
     private int age;
     private String name;
-    private BigInteger toatalIncome;
+    private BigInteger totalIncome;
     private String occupation;
     private String qualification;
     private LocalDateTime dateTime;
@@ -39,14 +39,6 @@ public class UserRest {
         this.name = name;
     }
 
-    public BigInteger getToatalIncome() {
-        return toatalIncome;
-    }
-
-    public void setToatalIncome(BigInteger toatalIncome) {
-        this.toatalIncome = toatalIncome;
-    }
-
     public String getOccupation() {
         return occupation;
     }
@@ -63,10 +55,12 @@ public class UserRest {
         this.qualification = qualification;
     }
 
-    @Override
-    public String toString() {
-        return "User [age=" + age + ", name=" + name + ", occupation=" + occupation + ", qualification=" + qualification
-                + ", toatalIncome=" + toatalIncome + "]";
+    public BigInteger getTotalIncome() {
+        return totalIncome;
+    }
+
+    public void setTotalIncome(BigInteger totalIncome) {
+        this.totalIncome = totalIncome;
     }
 
     @Override
@@ -74,10 +68,11 @@ public class UserRest {
         final int prime = 31;
         int result = 1;
         result = prime * result + age;
+        result = prime * result + ((dateTime == null) ? 0 : dateTime.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((occupation == null) ? 0 : occupation.hashCode());
         result = prime * result + ((qualification == null) ? 0 : qualification.hashCode());
-        result = prime * result + ((toatalIncome == null) ? 0 : toatalIncome.hashCode());
+        result = prime * result + ((totalIncome == null) ? 0 : totalIncome.hashCode());
         return result;
     }
 
@@ -91,6 +86,11 @@ public class UserRest {
             return false;
         UserRest other = (UserRest) obj;
         if (age != other.age)
+            return false;
+        if (dateTime == null) {
+            if (other.dateTime != null)
+                return false;
+        } else if (!dateTime.equals(other.dateTime))
             return false;
         if (name == null) {
             if (other.name != null)
@@ -107,12 +107,18 @@ public class UserRest {
                 return false;
         } else if (!qualification.equals(other.qualification))
             return false;
-        if (toatalIncome == null) {
-            if (other.toatalIncome != null)
+        if (totalIncome == null) {
+            if (other.totalIncome != null)
                 return false;
-        } else if (!toatalIncome.equals(other.toatalIncome))
+        } else if (!totalIncome.equals(other.totalIncome))
             return false;
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRest [age=" + age + ", dateTime=" + dateTime + ", name=" + name + ", occupation=" + occupation
+                + ", qualification=" + qualification + ", totalIncome=" + totalIncome + "]";
     }
 
 }
