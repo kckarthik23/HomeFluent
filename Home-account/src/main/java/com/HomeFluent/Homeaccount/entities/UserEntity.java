@@ -21,7 +21,7 @@ public class UserEntity {
     private int userId;
     @Column(name = "Age")
     private int age;
-    @Column(name = "Name")
+    @Column(name = "Name", unique = true)
     private String name;
     @Column(name = "TotalIncome")
     private BigInteger totalIncome;
@@ -31,6 +31,6 @@ public class UserEntity {
     private String qualification;
     @Column(name = "Registration_Date")
     private LocalDateTime localDateAndTime;
-    @Column(name = "Password")
+    @Column(name = "Password", unique = true)
     private String password;
 }
