@@ -17,11 +17,11 @@ root.render(
     <BrowserRouter>
     <Routes>
         <Route  path="/" element={<Login/>}/>
-        <Route exact path="*" element={<CreateUser/>}/>
+        <Route exact path="createUser" element={<CreateUser/>}/>
         <Route
       path="*"
       element={
-        <CreateUser/>
+        <h2>Please enter the correct url</h2>
       }
     />
     </Routes>
