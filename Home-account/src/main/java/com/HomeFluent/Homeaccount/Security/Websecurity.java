@@ -36,9 +36,17 @@ public class Websecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // TODO Auto-generated method stub
-        http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, "/")
-                .permitAll();
+        http.csrf().disable().cors().and()
+          .authorizeRequests()
+          .antMatchers(HttpMethod.POST,"/homeFluent/users/createUser/**").permitAll()
+          .and()
+          .authorizeRequests()
+          .anyRequest()
+          .authenticated()
+          .and()
+          .httpBasic()
+          .and()
+          .formLogin();
+     
     }
-
 }
