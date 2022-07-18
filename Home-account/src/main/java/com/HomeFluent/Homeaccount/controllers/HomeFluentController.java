@@ -52,7 +52,7 @@ public class HomeFluentController {
         // throw new RuntimeException("fuckeddddddd");
     }
 
-    @GetMapping("/users/getUser/{name}")
+    @GetMapping("/users/getUserByName/{name}")
     public UserRest getUser(@PathVariable String name) {
         return userservice.getUserByName(name);
     }
