@@ -14,7 +14,7 @@ public class UserDto implements Serializable {
     private BigInteger totalIncome;
     private String occupation;
     private String qualification;
-    private LocalDateTime localDateAndTime;
+    private LocalDateTime registrationDate;
     private String password;
 
     public String getPassword() {
@@ -27,20 +27,6 @@ public class UserDto implements Serializable {
 
     public int getAge() {
         return age;
-    }
-
-    /**
-     * @return the localDateAndTime
-     */
-    public LocalDateTime getLocalDateAndTime() {
-        return localDateAndTime;
-    }
-
-    /**
-     * @param localDateAndTime the localDateAndTime to set
-     */
-    public void setLocalDateAndTime(LocalDateTime localDateAndTime) {
-        this.localDateAndTime = localDateAndTime;
     }
 
     public void setAge(int age) {
@@ -73,7 +59,7 @@ public class UserDto implements Serializable {
 
     @Override
     public String toString() {
-        return "UserDto [age=" + age + ", localDateAndTime=" + localDateAndTime + ", name=" + name + ", occupation="
+        return "UserDto [age=" + age + ", localDateAndTime=" + registrationDate + ", name=" + name + ", occupation="
                 + occupation + ", password=" + password + ", qualification=" + qualification + ", totalIncome="
                 + totalIncome + "]";
     }
@@ -91,7 +77,7 @@ public class UserDto implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + age;
-        result = prime * result + ((localDateAndTime == null) ? 0 : localDateAndTime.hashCode());
+        result = prime * result + ((registrationDate == null) ? 0 : registrationDate.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((occupation == null) ? 0 : occupation.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -111,10 +97,10 @@ public class UserDto implements Serializable {
         UserDto other = (UserDto) obj;
         if (age != other.age)
             return false;
-        if (localDateAndTime == null) {
-            if (other.localDateAndTime != null)
+        if (registrationDate == null) {
+            if (other.registrationDate != null)
                 return false;
-        } else if (!localDateAndTime.equals(other.localDateAndTime))
+        } else if (!registrationDate.equals(other.registrationDate))
             return false;
         if (name == null) {
             if (other.name != null)
@@ -142,6 +128,14 @@ public class UserDto implements Serializable {
         } else if (!totalIncome.equals(other.totalIncome))
             return false;
         return true;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
 }

@@ -1,5 +1,6 @@
 import React from "react";
-import  userService from "/Users/kcrao/ReactJS/HomeFluentUI/src/public/scripts/Services/UserService";
+import userService from "/Users/kcrao/ReactJS/HomeFluentUI/src/public/scripts/Services/UserService";
+import {Navigate} from "react-router-dom";
 class CreateUser extends React.Component {
 
     constructor(props) {
@@ -12,12 +13,14 @@ class CreateUser extends React.Component {
         this.handlePassword = this.handlePassword.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            name: "eve",
-            age: 18,
-            totalIncome: 199999999999,
-            occupation: "AGRI",
-            qualification: "AGRI",
-            password: "FGHDJ"
+            name: "",
+            age: null,
+            totalIncome: null,
+            occupation: "",
+            qualification: "",
+            password: "",
+            user:null,
+            error:null
         };
     }
 
@@ -69,26 +72,35 @@ class CreateUser extends React.Component {
         };
         userService.createUser(userData).then(res => {
             alert("user created successfully !!");
+            this.setState({
+                user:true
+            });
         }).catch(error => {
             alert(error);
+            this.setState({
+                error:error
+            });
         })
     }
     render() {
+        let {user,error}=this.state;
         return (<div>
+            {error&&alert("Data provided is invalid , please provide correct data")}
+            {user&&(<Navigate to="/dashboard" replace={true}/>)}
             <form>
                 <h2>Create your account</h2>
                 <br />
-                <input type={"text"} name={"name"} id="name" value={this.state.name} onChange={e => this.handleName} />Enter your Name
+                <input type={"text"} name={"name"} id="name" value={this.state.name} onChange={this.handleName} />Enter your Name
                 <br /> <br />
-                <input type={"number"} name={"age"} id="age" value={this.state.age} onChange={e => this.handleAge} />Enter your Age
+                <input type={"number"} name={"age"} id="age" value={this.state.age} onChange={this.handleAge} />Enter your Age
                 <br />  <br />
-                <input type={"number"} name={"totalIncome"} id="totalIncome" value={this.state.totalIncome} onChange={e => this.handleTotalIncome} />Enter your total Income
-                <br />
-                <input type={"text"} name={"occupation"} id="occupation" value={this.state.occupation} onChange={e => this.hanldeOccupation} />Enter your Occupation
+                <input type={"number"} name={"totalIncome"} id="totalIncome" value={this.state.totalIncome} onChange={this.handleTotalIncome} />Enter your total Income
+                <br />  <br/>
+                <input type={"text"} name={"occupation"} id="occupation" value={this.state.occupation} onChange={this.hanldeOccupation} />Enter your Occupation
                 <br />  <br />
-                <input type={"text"} name={"qualification"} id="qualification" value={this.state.qualification} onChange={e => this.handleQualification} />Enter your Qualification
+                <input type={"text"} name={"qualification"} id="qualification" value={this.state.qualification} onChange={this.handleQualification} />Enter your Qualification
                 <br /> <br />
-                <input type={"password"} Occupation id="password" value={this.state.password} onChange={e => this.handlePassword} />Enter your Password
+                <input type={"password"} Occupation id="password" value={this.state.password} onChange={this.handlePassword} />Enter your Password
                 <br /> <br />
                 <button onClick={this.handleSubmit}>Submit</button>
             </form>

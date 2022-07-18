@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.HomeFluent.Homeaccount.Services.UserService;
 import com.HomeFluent.Homeaccount.dto.UserDto;
-import com.HomeFluent.Homeaccount.entities.UserEntity;
 import com.HomeFluent.Homeaccount.models.User;
 import com.HomeFluent.Homeaccount.responseModels.UserRest;
 
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,12 +32,12 @@ public class HomeFluentController {
     PasswordEncoder passwordEncoder;
 
     @PostMapping(value = "/users/createUser", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<UserEntity> createUser(@RequestBody User user) {
+    public ResponseEntity<UserRest> createUser(@RequestBody User user) {
 
         BeanUtils.copyProperties(user, userDto);
         userDto.setPassword(passwordEncoder.encode(user.getPassword()));
-        UserEntity response = userservice.createUser(userDto);
-        ResponseEntity<UserEntity> entity;
+        UserRest response = userservice.createUser(userDto);
+        ResponseEntity<UserRest> entity;
         if (response != null)
             entity = new ResponseEntity<>(response, HttpStatus.ACCEPTED);
         else
@@ -55,8 +53,13 @@ public class HomeFluentController {
     }
 
     @GetMapping("/users/getUser/{name}")
-    public UserDto getUser(@PathVariable String name) {
-        return null;
+    public UserRest getUser(@PathVariable String name) {
+        return userservice.getUserByName(name);
+    }
+
+    @GetMapping("/users/getUser/{id}")
+    public UserRest getUser(@PathVariable int id) {
+        return userservice.getUserById(id);
     }
 
 }

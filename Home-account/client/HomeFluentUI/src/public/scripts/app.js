@@ -1,5 +1,6 @@
 import  {Login} from "./component/login";
 import { CreateUser} from "./component/createUser";
+import { Dashboard } from "./component/dashBoard";
 import * as ReactDOM from 'react-dom';
 import React from "react";
 import {
@@ -16,8 +17,9 @@ const root=ReactDOM.createRoot(
 root.render(
     <BrowserRouter>
     <Routes>
-        <Route  path="/" element={<Login/>}/>
+        <Route exact path="/" element={<Login/>}/>
         <Route exact path="createUser" element={<CreateUser/>}/>
+        <Route exact path="dashboard" element={<Dashboard/>}/>
         <Route
       path="*"
       element={

@@ -1,4 +1,4 @@
-package com.HomeFluent.Homeaccount.Security;
+/* package com.HomeFluent.Homeaccount.Security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -18,8 +18,9 @@ private String allowedOrigins;
     public void addCorsMappings(CorsRegistry registry) {
         // TODO Auto-generated method stub
         WebMvcConfigurer.super.addCorsMappings(registry);
-        registry.addMapping("/**").allowedOrigins(allowedOrigins.split(","))
-        .allowedMethods("*").allowedHeaders("*");
+        registry.addMapping("/**").allowedOriginPatterns("*")
+        .allowedMethods("GET", "PUT", "POST", "PATCH", "DELETE", "OPTIONS").allowedHeaders("*").exposedHeaders("*");
     }
     
 }
+ */

@@ -22,20 +22,30 @@ public class UserServiceImpl implements UserService, DetailService {
 
     @Autowired
     UserRepo userRepo;
-    @Autowired
-    UserRest userRest;
 
     @Override
-    public UserDto getUserByName(String name) {
+    public UserRest getUserByName(String name) {
+        UserRest returnVal = null;
+        UserEntity entity = userRepo.findByName(name);
+        if (entity != null) {
+            returnVal = new UserRest();
+            BeanUtils.copyProperties(entity, returnVal);
+        }
+
         // TODO Auto-generated method stub
-        return null;
+        return returnVal;
     }
 
     @Override
-    public UserDto getUserById(int id) {
-        userRepo.findById(id).get();
-        // TODO Auto-generated method stub
-        return null;
+    public UserRest getUserById(int id) {
+        UserRest returnVal = null;
+        UserEntity entity = userRepo.findById(id).get();
+        if (entity != null) {
+            returnVal = new UserRest();
+            BeanUtils.copyProperties(entity, returnVal);
+        }
+
+        return returnVal;
     }
 
     @Override
@@ -47,12 +57,14 @@ public class UserServiceImpl implements UserService, DetailService {
     }
 
     @Override
-    public UserEntity createUser(UserDto user) {
+    public UserRest createUser(UserDto user) {
         // TODO Auto-generated method stub
-        user.setLocalDateAndTime(LocalDateTime.now());
+        user.setRegistrationDate(LocalDateTime.now());
+        UserRest returnVal = new UserRest();
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
-        UserEntity returnVal = userRepo.save(userEntity);
+        UserEntity entity = userRepo.save(userEntity);
+        BeanUtils.copyProperties(entity, returnVal);
         return returnVal;
 
     }
@@ -64,7 +76,7 @@ public class UserServiceImpl implements UserService, DetailService {
     }
 
     @Override
-    public UserDto updateUser(UserDto user) {
+    public UserRest updateUser(UserDto user) {
         // TODO Auto-generated method stub
         return null;
     }

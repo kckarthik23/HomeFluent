@@ -21,18 +21,18 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "UserID")
     private int userId;
-    @Column(name = "Age")
+    @Column(name = "Age", nullable = false)
     private int age;
-    @Column(name = "Name", unique = true)
+    @Column(name = "Name", unique = true, nullable = false)
     private String name;
-    @Column(name = "TotalIncome")
+    @Column(name = "TotalIncome", nullable = false)
     private BigInteger totalIncome;
-    @Column(name = "Occupation")
+    @Column(name = "Occupation", nullable = false)
     private String occupation;
-    @Column(name = "Qualification")
+    @Column(name = "Qualification", nullable = false)
     private String qualification;
-    @Column(name = "Registration_Date")
-    private LocalDateTime localDateAndTime;
-    @Column(name = "Password", unique = true)
+    @Column(name = "Registration_Date", nullable = false)
+    private LocalDateTime registrationDate;
+    @Column(name = "Password", unique = true, nullable = false)
     private String password;
 }

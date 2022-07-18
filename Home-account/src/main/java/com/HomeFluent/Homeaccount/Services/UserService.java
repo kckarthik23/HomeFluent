@@ -10,16 +10,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
-    public UserDto getUserByName(String name);
+    public UserRest getUserByName(String name);
 
-    public UserDto getUserById(int id);
+    public UserRest getUserById(int id);
 
     public List<UserRest> getAlUsers();
 
-    public UserEntity createUser(UserDto user);
+    public UserRest createUser(UserDto user);
 
     public void deleteUser(String name);
 
-    public UserDto updateUser(UserDto user);
+    public UserRest updateUser(UserDto user);
 
 }
