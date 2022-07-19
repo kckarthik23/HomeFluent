@@ -12,11 +12,10 @@ import com.HomeFluent.Homeaccount.responseModels.UserRest;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
+import com.HomeFluent.Homeaccount.Security.UserDetail;
 @Service
 public class UserServiceImpl implements UserService, DetailService {
 
@@ -87,7 +86,7 @@ public class UserServiceImpl implements UserService, DetailService {
         UserEntity entity = userRepo.findByName(username);
         if (entity == null)
             throw new UsernameNotFoundException(username);
-        return new User(entity.getName(), entity.getPassword(), new ArrayList<>());
+        return new UserDetail(entity.getName(), entity.getPassword(), new ArrayList<>(),entity.getUserId());
     }
 
 }

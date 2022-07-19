@@ -2,8 +2,6 @@ package com.HomeFluent.Homeaccount.Security;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.cassandra.CassandraProperties.Request;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -51,7 +49,7 @@ public class Websecurity extends WebSecurityConfigurerAdapter {
         corsConfiguration.setAllowedOrigins(List.of("http://localhost:8000","http://localhost:8080"));
         corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT","OPTIONS","PATCH", "DELETE"));
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+        corsConfiguration.setExposedHeaders(List.of("Authorization","userId"));
         http.csrf().disable().cors()
         .configurationSource(r->corsConfiguration)
                 .and()

@@ -13,7 +13,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.HomeFluent.Homeaccount.Security.SecurityConstants.SecurityConstants;
@@ -21,7 +20,7 @@ import com.HomeFluent.Homeaccount.models.UserRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.micrometer.core.ipc.http.HttpSender.Response;
+import com.HomeFluent.Homeaccount.Security.UserDetail;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,24 +56,26 @@ public class AuthFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
             Authentication authResult) throws IOException, ServletException {
         // TODO Auto-generated method stub
-        String name=((User)authResult.getPrincipal()).getUsername();
-        String token=Jwts.builder().setSubject(name).
+        int  userId=((UserDetail)authResult.getPrincipal()).getUserId();
+        String token=Jwts.builder().setSubject("UserID"+userId).
         setExpiration(new Date(System.currentTimeMillis()+SecurityConstants.EXPIRATION_TIME))
         .signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN).compact();
         response.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX+token);
-        logger.info("response headers "+response.getHeader("/Authoriation")
-        +response.getHeaderNames().toString());
+        response.addHeader("userId",Integer.toString(userId));
+        logger.info("response headers "+response.getHeader("Authoriation"));
         response.setStatus(200);
-        response.setHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX+token);
+        //response.setHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX+token);
+    response.getWriter().write(token+"Authorized User"+userId);
+    logger.info(response.toString());
     
     }
 @Override
 protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
         AuthenticationException failed) throws IOException, ServletException {
     // TODO Auto-generated method stub
-    response.setStatus(response.SC_BAD_REQUEST);
-    response.sendError(response.SC_BAD_REQUEST);
-    response.setHeader("error", "401");
+    String body=response.SC_BAD_REQUEST+" invalid password ";
+    response.getWriter().write(body);
+    response.getWriter().flush();
     //throw new IOException(failed.getMessage(), failed.getCause());
         }
 }
