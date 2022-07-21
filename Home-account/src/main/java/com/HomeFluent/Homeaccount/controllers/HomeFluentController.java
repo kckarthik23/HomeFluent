@@ -53,12 +53,12 @@ public class HomeFluentController {
     }
 
     @GetMapping("/users/getUserByName/{name}")
-    public UserRest getUser(@PathVariable String name) {
+    public UserRest getUserByName(@PathVariable String name) {
         return userservice.getUserByName(name);
     }
 
     @GetMapping("/users/getUser/{id}")
-    public UserRest getUser(@PathVariable int id) {
+    public UserRest getUser(@PathVariable String id) {
         return userservice.getUserById(id);
     }
 

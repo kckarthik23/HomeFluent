@@ -36,7 +36,8 @@ public class UserServiceImpl implements UserService, DetailService {
     }
 
     @Override
-    public UserRest getUserById(int id) {
+    public UserRest getUserById(String ID) {
+       int id= Integer.valueOf(ID);
         UserRest returnVal = null;
         UserEntity entity = userRepo.findById(id).get();
         if (entity != null) {

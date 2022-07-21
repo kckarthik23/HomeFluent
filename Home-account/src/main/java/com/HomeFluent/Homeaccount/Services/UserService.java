@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public interface UserService {
     public UserRest getUserByName(String name);
 
-    public UserRest getUserById(int id);
+    public UserRest getUserById(String id);
 
     public List<UserRest> getAlUsers();
 

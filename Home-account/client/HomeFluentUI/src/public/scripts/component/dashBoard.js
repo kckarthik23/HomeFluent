@@ -1,5 +1,9 @@
 import React from "react";
-const Dashboard = () => {
+import { useLocation, Link } from "react-router-dom";
+
+const Dashboard = (props) => {
+    let location = useLocation();
+    //console.log(location.state.userId);
     return (
 
         <div>
@@ -13,18 +17,17 @@ const Dashboard = () => {
             <br />
             <div>
                 <nav>
-                    <a href="/logout">Logout</a>
-                    <a href="/addFinance">Add your Finance</a>
-                    <a href="/getUser">User profile</a>
-                    <a href="/showFinance">My Finance</a>
+                    <Link to="logout" state={{ userId: location.state.userId }}>Logout</Link>
+                    <Link to="/addFinance" state={{ userId: location.state.userId }}>Add your Finance</Link>
+                    <Link to="/getUser" state={{ userId: location.state.userId }}>User profile</Link>
+                    <Link to="/showFinance" state={{ userId: location.state.userId }}>My Finance</Link>
                 </nav>
             </div>
             <div>
                 <span>
-                   <h2>Welcome to HomeFluent Dashboard</h2> 
+                    <h2>Welcome to HomeFluent Dashboard</h2>
                 </span>
             </div>
-
         </div>
 
     );

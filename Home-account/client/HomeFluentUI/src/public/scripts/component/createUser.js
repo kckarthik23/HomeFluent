@@ -72,6 +72,7 @@ class CreateUser extends React.Component {
         };
         userService.createUser(userData).then(res => {
             alert("user created successfully !!");
+            console.log(res.headers);
             this.setState({
                 user:true
             });

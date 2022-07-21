@@ -8,7 +8,8 @@ class Login extends React.Component {
             name: "",
             password: "",
             user: false,
-            error: null
+            error: null,
+            userId:null
 
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,8 +24,12 @@ class Login extends React.Component {
         }
         userService.sendLogin(user).then(res => {
             alert("user logged in successfully " + res.status);
+            console.log(res.headers);
+            console.log(res.headers.userid);
+            localStorage.setItem("Authorization",res.headers.authorization);
             this.setState({
-                user: true
+                user: true,
+                userId:res.headers.userid
             })
         }
 
@@ -50,14 +55,15 @@ class Login extends React.Component {
         })
     }
     render() {
-        let { user, error } = this.state;
+        let { user, error,userId } = this.state;
+        console.log(user+" error "+error);
         return (
 
             <div
             >
                 <h2>Login</h2>
                 {error && alert("invalid password please provide correct password")}
-                {user && (<Navigate to="/dashboard" replace={true} />)}
+                {user && (<Navigate to="/dashboard" replace state={{userId}}/>)}
                 <form>
                     <input type={"text"} onChange={this.onChangeName} value={this.state.name} />Enter your Name
                     <br></br>

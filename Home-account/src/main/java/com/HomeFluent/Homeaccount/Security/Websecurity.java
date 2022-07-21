@@ -15,6 +15,7 @@ import org.springframework.security.web.header.writers.StaticHeadersWriter;
 import org.springframework.web.cors.CorsConfiguration;
 
 import com.HomeFluent.Homeaccount.Security.AuthFilter.AuthFilter;
+import com.HomeFluent.Homeaccount.Security.AuthFilter.AuthorizationFilter;
 import com.HomeFluent.Homeaccount.Security.SecurityConstants.SecurityConstants;
 import com.HomeFluent.Homeaccount.Security.UserDetails.DetailService;
 
@@ -63,6 +64,7 @@ public class Websecurity extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 .addFilter(getAuthFilter())
+                .addFilter(new AuthorizationFilter(authenticationManager()))
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, exception) -> {
                     response.setStatus(401);

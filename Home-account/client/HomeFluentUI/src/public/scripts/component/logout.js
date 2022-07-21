@@ -1,0 +1,5 @@
+class Logout {
+
+}
+
+export {Logout};
